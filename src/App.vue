@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="">
   <h1>Countries</h1>
+  <input type="text" v-model='searchValue' placeholder="search countries">
   <countries-list :countries='countries'></countries-list>
   <country-detail :country='selectedCountry'></country-detail>
   </div>
@@ -16,7 +17,8 @@ export default {
   data(){
     return{
       countries: [],
-      selectedCountry: null
+      selectedCountry: null,
+      searchValue: ''
     };
   },
   components: {
@@ -31,6 +33,13 @@ export default {
     eventBus.$on('selected-country', (country) =>{
       this.selectedCountry = country;
     });
+  },
+  computed:{
+    searchCountries(){
+      return this.countries.filter((country) => {
+        return country.name.match(this.searchValue)
+      })
+    }
   }
 }
 </script>
