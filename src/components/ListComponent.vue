@@ -1,5 +1,5 @@
 <template lang="html">
-  <li v-on:click="displayData">{{country.name}}</li>
+  <option :value='country'>{{country.name}}</option>
 </template>
 
 <script>
